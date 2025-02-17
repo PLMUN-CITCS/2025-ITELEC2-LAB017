@@ -1,7 +1,7 @@
-# 2025-ITELEC2-LAB016
+# 2025-ITELEC2-LAB017
 Week 05 - Working with Functions
 
-Laboratory # 16 - Guided Coding Exercise: Basic Function Definition and Calling
+Laboratory # 17 - Guided Coding Exercise: Function with Arguments and Return Statement
 
 ## **Instructions**
 
@@ -77,95 +77,88 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Laboratory # 16 - Guided Coding Exercise: Basic Function Definition and Calling**
+**Laboratory # 17 - Guided Coding Exercise: Function with Arguments and Return Statement**
 
    **Objective:**
-   - Understand the use of a while loop for repetitive tasks.
-   - Learn how to terminate a loop using a sentinel value.
-   - Recognize the advantages of looping for dynamic, user-driven processes.
-   - Practice input validation and error handling.
+   - Learn how to define a function that accepts arguments (parameters).
+   - Understand the difference between parameters and arguments.
+   - Use the return statement to output a value from a function.
+   - Practice using the math module for calculations.
 
-   **Desired Output (Example 1):**
+   **Desired Output:**
    ```bash
-   Enter a number (or 'stop' to finish): 5
-   Enter a number (or 'stop' to finish): 10
-   Enter a number (or 'stop' to finish): 3
-   Enter a number (or 'stop' to finish): stop
-   The total sum is: 18
+   The area of a circle with radius 5 is: 78.54
    ```
       
    **Notable Observations (to be discussed after completing the exercise):**
-   - Python does not have a built-in switch statement like some other languages. Dictionaries provide a clean and efficient way to achieve similar functionality.
-   - The .get() method of a dictionary allows you to retrieve a value associated with a key. Crucially, it also lets you specify a default value that will be returned if the key is not found in the dictionary. This is very useful for handling cases where the user might enter invalid input.
-   - The ternary operator (value_if_true if condition else value_if_false) provides a concise way to write conditional expressions in a single line. It's useful for simple conditions where you want to assign one of two values.
-   - String methods like .strip() and .lower() are essential for normalizing user input, making your code more robust.
+   - Parameters vs. Arguments:
+      - A parameter is a variable in the function definition (e.g., radius in def circle_area(radius):). It acts as a placeholder for the value that will be passed to the function.
+      - An argument is the actual value passed to the function when it is called (e.g., radius_value in circle_area(radius_value)).
+   - return Statement: The return statement sends a value back from the function to the place where it was called. This allows you to use the result of the function's calculation in other parts of your code.
 
    **Python Best Practices**
-   - Input Normalization: Always normalize user input (e.g., convert to lowercase using .lower() and remove leading/trailing whitespace using .strip()) to handle variations in user input and prevent unexpected behavior.
-   - Dictionary .get() with Default: Use the .get() method with a default value when retrieving values from a dictionary. This is a best practice, especially when dealing with user input, as it provides a clean way to handle cases where the key might not exist.
-   - Readability: Even with concise constructs like the ternary operator, prioritize code readability. If a ternary expression becomes too complex, consider using a regular if...else statement for clarity.
-   - Descriptive Variable Names: Use meaningful variable names (e.g., day_messages, day, message, day_type).
-   - Comments: Add comments to explain your logic, especially when simulating control flow structures like a switch statement.
-   - Test Thoroughly: Test your code with various inputs, including valid days of the week (with different capitalization and spacing) and invalid days, to ensure it handles all cases correctly.
+   - Descriptive Names: Use clear and descriptive names for functions and parameters.
+   - Docstrings: Include a docstring for every function to explain its purpose, parameters, and return value.
+   - Formatted Output: Format your output to make it more readable and user-friendly. F-strings provide a concise and expressive way to do this.
+   - Modular Code: Break down your code into functions to make it more modular, reusable, and easier to understand.
+   - Test Thoroughly: Test your functions with different inputs to ensure they work correctly.
 
    **Step-by-Step Instructions:**
 
    1. Setting up: Open your preferred Python environment or Text Editor, and create a Python Script.
-      - Required Filename: `while_loop_sentinel.py`
+      - Required Filename: `function_arguments_return.py`
       
-   2. Initialize the sum variable:
-      - Create a variable named total_sum and initialize it to 0. This variable will store the sum of the numbers entered by the user.
+   2. Import the math module:
+      - Use the import statement to import the math module. This gives you access to mathematical constants and functions, including math.pi for the value of π.
 ```python
-total_sum = 0
+import math
 ```
       
-   3.  Start a while loop that continues indefinitely:
-      - Use a while True loop. This creates a loop that will run continuously until explicitly stopped using the break statement.
+   3. Define the function (circle_area):
+      - Use the def keyword followed by the function name (circle_area).
+      - Add parentheses () after the function name and include a parameter name (e.g., radius) inside the parentheses. This defines the input that the function will accept.
+      - End the line with a colon :.
 ```python
-while True:
+def circle_area(radius):
 ```
 
-   4. Prompt the user for input:
-      - Inside the while loop, use the input() function to prompt the user to enter a number or "stop" to finish. Store the input in a variable named user_input.
+   4. Add a docstring:
+      - Inside the function definition (indented), add a docstring to explain what the function does.
 ```python
-    user_input = input("Enter a number (or 'stop' to finish): ")
+def circle_area(radius):
+    """Calculate and return the area of a circle given its radius."""
 ```
 
-   5. Check if the sentinel value 'stop' is entered:
-      - Convert the user_input to lowercase using .lower() and remove any leading/trailing whitespace using .strip(). - This handles variations in user input (e.g., "Stop", " STOP ", "stop").
-      - Use an if statement to check if the normalized user_input is equal to "stop".
-      - If it is, use the break statement to exit the while loop.
+   5. Calculate the area:
+      - Inside the function definition (indented), calculate the area of the circle using the formula: area = π * radius^2. Use math.pi for π and the ** operator for exponentiation (radius squared).
+      - Store the calculated area in a variable named area.
 ```python
-    if user_input.strip().lower() == "stop":
-        break  # Exit the loop
+    area = math.pi * (radius ** 2)
 ```
 
-   6. Convert input to a number and add to total_sum (with error handling):
-      - After the if statement that checks for "stop", use a try-except block to handle potential ValueError exceptions that might occur if the user enters something that is not a number.
-      - Inside the try block:
-         - Convert the user_input to a float (to allow for decimal numbers).
-         - Add the converted number to total_sum using the += operator.
-      - Inside the except ValueError block:
-         - Print an error message to the user indicating that the input was invalid.
+   6. Return the calculated area:
+      - Use the return statement followed by the area variable to return the calculated area from the function.
 ```python
-    try:
-        number = float(user_input)
-        total_sum += number
-    except ValueError:
-        print("Invalid input. Please enter a numeric value or 'stop'.")
+    return area
 ```
 
-   7. Print the final total sum:
-      - After the while loop has finished (outside the loop), use the print() function to display the final value of total_sum.
+   7. Call the function and display the result:
+      - After the function definition (not indented):
+         - Define a variable named radius_value and assign it a specific radius (e.g., 5).
+         - Call the circle_area() function, passing radius_value as an argument. Store the returned result in a variable named area_result.
+         - Use the print() function with an f-string to display the result, formatting the output to two decimal places using the format specifier {area_result:.2f}.
 ```python
-print("The total sum is:", total_sum)
+radius_value = 5
+area_result = circle_area(radius_value)
+
+print(f"The area of a circle with radius {radius_value} is: {area_result:.2f}")
 ```
    8. Complete Code: Combine the steps above to form the complete program.
    9. Run the code: Execute your Python code.
-   10. Observe the output: Test the program by entering various numbers and then entering "stop" (in different cases and with extra spaces).  Also, test it by entering non-numeric input to see how the error handling works.
+   10. Observe the output: Verify that the output matches the "Desired Output" shown above.
 
    **Conclusion**
-   This exercise demonstrated the use of a while loop for handling user input with a sentinel value.  You learned how to create a loop that continues until a specific condition is met (in this case, the user entering "stop").  You also practiced input validation and error handling using try-except blocks.  The while loop and sentinel values are very useful for creating interactive programs where the number of iterations depends on user input.  Robust error handling is crucial for creating reliable and user-friendly programs.
+   This exercise demonstrated how to create a user-defined function that accepts arguments (parameters) and returns a value using the return statement.  You learned the difference between parameters and arguments and practiced using the math module for calculations.  Functions with arguments and return values are essential for writing modular and reusable code, making your programs more organized and efficient.
 
 ### **Step 4: Push Changes to GitHub**
 Once you've completed your changes, follow these steps to upload your work to your GitHub repository.
@@ -189,7 +182,7 @@ git add .
    Write a meaningful commit message:
    
 ```bash
-git commit -m "Submitting Python Week 04 - Laboratory # 16"
+git commit -m "Submitting Python Week 04 - Laboratory # 17"
 ```
    
 4. Push your changes to GitHub:
