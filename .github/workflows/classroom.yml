@@ -15,27 +15,27 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pylint
-    - name: File Existence Check - switch_ternary_operator.py
+    - name: File Existence Check - function_arguments_return.py
       id: file-existence-check
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: File Existence Check - switch_ternary_operator.py
-        command: "test -f switch_ternary_operator.py"
+        test-name: File Existence Check - function_arguments_return.py
+        command: "test -f function_arguments_return.py"
         timeout: 10
         max-score: 10
-    - name: Syntax Check - switch_ternary_operator.py
+    - name: Syntax Check - function_arguments_return.py
       id: syntax-check
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Syntax Check - switch_ternary_operator.py
-        command: "pylint switch_ternary_operator.py --disable=C"
+        test-name: Syntax Check - function_arguments_return.py
+        command: "pylint function_arguments_return.py --disable=C"
         timeout: 10
         max-score: 30
-    - name: Run Check - switch_ternary_operator.py
+    - name: Run Check - function_arguments_return.py
       id: logic-check
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Run Check - switch_ternary_operator.py
+        test-name: Run Check - function_arguments_return.py
         setup-command: "chmod +x ./run_tests.sh"
         command: "./run_tests.sh"
         timeout: 10
